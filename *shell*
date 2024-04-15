@@ -1,0 +1,606 @@
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds/test$ ceedling
+Welcome to Ceedling!
+Commands:
+  ceedling example PROJ_NAME [DEST]  # new specified example project (in DEST, if specified)
+  ceedling examples                  # list available example projects
+  ceedling help [COMMAND]            # Describe available commands or one specific command
+  ceedling new PROJECT_NAME          # create a new ceedling project
+  ceedling upgrade PROJECT_NAME      # upgrade ceedling for a project (not req'd if gem used)
+  ceedling version                   # return the version of the tools installed
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds/test$ cd ..
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  4
+PASSED:  4
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  4
+PASSED:  4
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+test/test_leds.c:131:6: error: redefinition of ‘test_prender_y_pagar_varios_leds’
+  131 | void test_prender_y_pagar_varios_leds(void){
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+test/test_leds.c:116:6: note: previous definition of ‘test_prender_y_pagar_varios_leds’ was here
+  116 | void test_prender_y_pagar_varios_leds(void){
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ERROR: Shell command failed.
+> Shell executed command:
+'gcc -I"/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src" -I"/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/cmock/src" -I"build/test/mocks" -I"test" -I"test/support" -I"src" -DTEST -DGNU_COMPILER -g -c "test/test_leds.c" -o "build/test/out/c/test_leds.o" -MMD -MF "build/test/dependencies/test_leds.d"'
+> And exited with status: [1].
+
+#<Thread:0x000055f7c3ee04b0 /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:7 run> terminated with exception (report_on_exception is true):
+Traceback (most recent call last):
+	11: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:10:in `block (2 levels) in par_map'
+	10: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:97:in `block in invoke_test_objects'
+	 9: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:188:in `invoke'
+	 8: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:199:in `invoke_with_call_chain'
+	 7: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:199:in `synchronize'
+	 6: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:219:in `block in invoke_with_call_chain'
+	 5: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `execute'
+	 4: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `each'
+	 3: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `block in execute'
+	 2: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:17:in `block in <top (required)>'
+	 1: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:99:in `generate_object_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tool_executor.rb:88:in `exec': ShellExecutionException (ShellExecutionException)
+rake aborted!
+ShellExecutionException: ShellExecutionException
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tool_executor.rb:88:in `exec'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:99:in `generate_object_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:17:in `block in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:97:in `block in invoke_test_objects'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:10:in `block (2 levels) in par_map'
+Tasks: TOP => build/test/out/c/test_leds.o
+(See full trace by running task with --trace)
+ERROR: Ceedling Failed
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  5
+PASSED:  5
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  5
+PASSED:  5
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  6
+PASSED:  6
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  6
+PASSED:  6
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  5
+PASSED:  5
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+test/test_leds.c: In function ‘test_prender_todos_leds’:
+test/test_leds.c:156:3: warning: implicit declaration of function ‘leds_turn_all_on’; did you mean ‘leds_turn_on’? [-Wimplicit-function-declaration]
+  156 |   leds_turn_all_on();
+      |   ^~~~~~~~~~~~~~~~
+      |   leds_turn_on
+In file included from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src/unity.h:21,
+                 from test/test_leds.c:31:
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src/unity.h:156:138: warning: left shift count >= width of type [-Wshift-count-overflow]
+  156 |                                           UNITY_TEST_ASSERT_BITS(((UNITY_UINT)1 << (bit)), (UNITY_UINT)(0), (actual), __LINE__, NULL)
+      |                                                                                 ^~
+
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src/unity_internals.h:807:126: note: in definition of macro ‘UNITY_TEST_ASSERT_BITS’
+  807 | , actual, line, message)                            UnityAssertBits((UNITY_INT)(mask), (UNITY_INT)(expected), (UNITY_INT)(actual), (message), (UNITY_LINE_TYPE)(line))
+      |                                                                                 ^~~~
+
+test/test_leds.c:160:3: note: in expansion of macro ‘TEST_ASSERT_BIT_LOW’
+  160 |   TEST_ASSERT_BIT_LOW(0xFF, leds_virtuales);
+      |   ^~~~~~~~~~~~~~~~~~~
+Linking test_leds.out...
+/usr/bin/ld: build/test/out/c/test_leds.o: en la función `test_prender_todos_leds':
+/home/lgomez/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds/test/test_leds.c:156: referencia a `leds_turn_all_on' sin definir
+collect2: error: ld returned 1 exit status
+ERROR: Shell command failed.
+> Shell executed command:
+'gcc "build/test/out/c/test_leds_runner.o" "build/test/out/c/test_leds.o" "build/test/out/c/unity.o" "build/test/out/c/leds.o" "build/test/out/c/cmock.o" -o "build/test/out/test_leds.out"'
+> And exited with status: [1].
+
+
+NOTICE: If the linker reports missing symbols, the following may be to blame:
+  1. Test lacks #include statements corresponding to needed source files.
+  2. Project search paths do not contain source files corresponding to #include statements in the test.
+  3. Test does not #include needed mocks.
+
+rake aborted!
+
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:151:in `rescue in generate_executable_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:137:in `generate_executable_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:39:in `block in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:107:in `invoke_test_results'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/test_invoker.rb:125:in `block in setup_and_invoke'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/test_invoker.rb:51:in `setup_and_invoke'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tasks_tests.rake:13:in `block (2 levels) in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/bin/ceedling:345:in `block in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/bin/ceedling:332:in `<top (required)>'
+/usr/local/bin/ceedling:23:in `load'
+/usr/local/bin/ceedling:23:in `<main>'
+
+Caused by:
+ShellExecutionException: ShellExecutionException
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tool_executor.rb:88:in `exec'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:136:in `generate_executable_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:39:in `block in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:107:in `invoke_test_results'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/test_invoker.rb:125:in `block in setup_and_invoke'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/test_invoker.rb:51:in `setup_and_invoke'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tasks_tests.rake:13:in `block (2 levels) in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/bin/ceedling:345:in `block in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/bin/ceedling:332:in `<top (required)>'
+/usr/local/bin/ceedling:23:in `load'
+/usr/local/bin/ceedling:23:in `<main>'
+Tasks: TOP => build/test/results/test_leds.pass => build/test/out/test_leds.out
+(See full trace by running task with --trace)
+ERROR: Ceedling Failed
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+In file included from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src/unity.h:21,
+                 from test/test_leds.c:31:
+test/test_leds.c: In function ‘test_prender_todos_leds’:
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src/unity.h:156:138: warning: left shift count >= width of type [-Wshift-count-overflow]
+  156 |                                           UNITY_TEST_ASSERT_BITS(((UNITY_UINT)1 << (bit)), (UNITY_UINT)(0), (actual), __LINE__, NULL)
+      |                                                                                 ^~
+
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src/unity_internals.h:807:126: note: in definition of macro ‘UNITY_TEST_ASSERT_BITS’
+  807 | , actual, line, message)                            UnityAssertBits((UNITY_INT)(mask), (UNITY_INT)(expected), (UNITY_INT)(actual), (message), (UNITY_LINE_TYPE)(line))
+      |                                                                                 ^~~~
+
+test/test_leds.c:160:3: note: in expansion of macro ‘TEST_ASSERT_BIT_LOW’
+  160 |   TEST_ASSERT_BIT_LOW(0xFF, leds_virtuales);
+      |   ^~~~~~~~~~~~~~~~~~~
+Compiling leds.c...
+src/leds.c: In function ‘leds_turn_on_all’:
+src/leds.c:77:12: error: ‘puerto’ undeclared (first use in this function)
+   77 |   puntero =puerto;
+      |            ^~~~~~
+src/leds.c:77:12: note: each undeclared identifier is reported only once for each function it appears in
+ERROR: Shell command failed.
+> Shell executed command:
+'gcc -I"/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src" -I"/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/cmock/src" -I"build/test/mocks" -I"test" -I"test/support" -I"src" -DTEST -DGNU_COMPILER -g -c "src/leds.c" -o "build/test/out/c/leds.o" -MMD -MF "build/test/dependencies/leds.d"'
+> And exited with status: [1].
+
+#<Thread:0x0000560047188218 /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:7 run> terminated with exception (report_on_exception is true):
+Traceback (most recent call last):
+	11: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:10:in `block (2 levels) in par_map'
+	10: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:97:in `block in invoke_test_objects'
+	 9: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:188:in `invoke'
+	 8: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:199:in `invoke_with_call_chain'
+	 7: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:199:in `synchronize'
+	 6: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:219:in `block in invoke_with_call_chain'
+	 5: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `execute'
+	 4: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `each'
+	 3: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `block in execute'
+	 2: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:17:in `block in <top (required)>'
+	 1: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:99:in `generate_object_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tool_executor.rb:88:in `exec': ShellExecutionException (ShellExecutionException)
+rake aborted!
+ShellExecutionException: ShellExecutionException
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tool_executor.rb:88:in `exec'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:99:in `generate_object_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:17:in `block in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:97:in `block in invoke_test_objects'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:10:in `block (2 levels) in par_map'
+Tasks: TOP => build/test/out/c/leds.o
+(See full trace by running task with --trace)
+ERROR: Ceedling Failed
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Compiling leds.c...
+src/leds.c: In function ‘leds_turn_on_all’:
+src/leds.c:77:12: error: ‘puerto’ undeclared (first use in this function)
+   77 |   puntero =puerto;
+      |            ^~~~~~
+src/leds.c:77:12: note: each undeclared identifier is reported only once for each function it appears in
+ERROR: Shell command failed.
+> Shell executed command:
+'gcc -I"/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src" -I"/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/cmock/src" -I"build/test/mocks" -I"test" -I"test/support" -I"src" -DTEST -DGNU_COMPILER -g -c "src/leds.c" -o "build/test/out/c/leds.o" -MMD -MF "build/test/dependencies/leds.d"'
+> And exited with status: [1].
+
+#<Thread:0x000055ab5d4c0d70 /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:7 run> terminated with exception (report_on_exception is true):
+Traceback (most recent call last):
+	11: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:10:in `block (2 levels) in par_map'
+	10: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:97:in `block in invoke_test_objects'
+	 9: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:188:in `invoke'
+	 8: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:199:in `invoke_with_call_chain'
+	 7: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:199:in `synchronize'
+	 6: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:219:in `block in invoke_with_call_chain'
+	 5: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `execute'
+	 4: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `each'
+	 3: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `block in execute'
+	 2: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:17:in `block in <top (required)>'
+	 1: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:99:in `generate_object_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tool_executor.rb:88:in `exec': ShellExecutionException (ShellExecutionException)
+rake aborted!
+ShellExecutionException: ShellExecutionException
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tool_executor.rb:88:in `exec'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:99:in `generate_object_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:17:in `block in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:97:in `block in invoke_test_objects'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:10:in `block (2 levels) in par_map'
+Tasks: TOP => build/test/out/c/leds.o
+(See full trace by running task with --trace)
+ERROR: Ceedling Failed
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Compiling leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  6
+PASSED:  6
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+In file included from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src/unity.h:21,
+                 from test/test_leds.c:31:
+test/test_leds.c: In function ‘test_prender_todos_leds’:
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src/unity.h:156:138: warning: left shift count >= width of type [-Wshift-count-overflow]
+  156 |                                           UNITY_TEST_ASSERT_BITS(((UNITY_UINT)1 << (bit)), (UNITY_UINT)(0), (actual), __LINE__, NULL)
+      |                                                                                 ^~
+
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src/unity_internals.h:807:126: note: in definition of macro ‘UNITY_TEST_ASSERT_BITS’
+  807 | , actual, line, message)                            UnityAssertBits((UNITY_INT)(mask), (UNITY_INT)(expected), (UNITY_INT)(actual), (message), (UNITY_LINE_TYPE)(line))
+      |                                                                                 ^~~~
+
+test/test_leds.c:161:3: note: in expansion of macro ‘TEST_ASSERT_BIT_LOW’
+  161 |   TEST_ASSERT_BIT_LOW(0xFF, leds_virtuales);
+      |   ^~~~~~~~~~~~~~~~~~~
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  6
+PASSED:  6
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Compiling leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  6
+PASSED:  6
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  6
+PASSED:  6
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Compiling leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+-------------------
+FAILED TEST SUMMARY
+-------------------
+[test_leds.c]
+  Test: test_prender_todos_leds
+  At line (156): "Expected 65535 Was 0"
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  6
+PASSED:  5
+FAILED:  1
+IGNORED: 0
+
+---------------------
+BUILD FAILURE SUMMARY
+---------------------
+Unit test failures.
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Compiling leds.c...
+src/leds.c:38: warning: "LEDS_ON" redefined
+   38 | #define LEDS_ON 0x0000
+      |
+src/leds.c:37: note: this is the location of the previous definition
+   37 | #define LEDS_ON 0xFFFF
+      |
+src/leds.c: In function ‘leds_turn_off_all’:
+src/leds.c:82:14: error: ‘LEDS_OFF’ undeclared (first use in this function); did you mean ‘LED_OFF’?
+   82 |   *puntero = LEDS_OFF;
+      |              ^~~~~~~~
+      |              LED_OFF
+src/leds.c:82:14: note: each undeclared identifier is reported only once for each function it appears in
+ERROR: Shell command failed.
+> Shell executed command:
+'gcc -I"/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/unity/src" -I"/var/lib/gems/2.7.0/gems/ceedling-0.31.1/vendor/cmock/src" -I"build/test/mocks" -I"test" -I"test/support" -I"src" -DTEST -DGNU_COMPILER -g -c "src/leds.c" -o "build/test/out/c/leds.o" -MMD -MF "build/test/dependencies/leds.d"'
+> And exited with status: [1].
+
+#<Thread:0x0000564a25302be8 /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:7 run> terminated with exception (report_on_exception is true):
+Traceback (most recent call last):
+	11: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:10:in `block (2 levels) in par_map'
+	10: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:97:in `block in invoke_test_objects'
+	 9: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:188:in `invoke'
+	 8: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:199:in `invoke_with_call_chain'
+	 7: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:199:in `synchronize'
+	 6: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:219:in `block in invoke_with_call_chain'
+	 5: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `execute'
+	 4: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `each'
+	 3: from /usr/share/rubygems-integration/all/gems/rake-13.0.1/lib/rake/task.rb:281:in `block in execute'
+	 2: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:17:in `block in <top (required)>'
+	 1: from /var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:99:in `generate_object_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tool_executor.rb:88:in `exec': ShellExecutionException (ShellExecutionException)
+rake aborted!
+ShellExecutionException: ShellExecutionException
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/tool_executor.rb:88:in `exec'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/generator.rb:99:in `generate_object_file'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/rules_tests.rake:17:in `block in <top (required)>'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/task_invoker.rb:97:in `block in invoke_test_objects'
+/var/lib/gems/2.7.0/gems/ceedling-0.31.1/lib/ceedling/par_map.rb:10:in `block (2 levels) in par_map'
+Tasks: TOP => build/test/out/c/leds.o
+(See full trace by running task with --trace)
+ERROR: Ceedling Failed
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Compiling leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+-------------------
+FAILED TEST SUMMARY
+-------------------
+[test_leds.c]
+  Test: test_apagar_todos_leds
+  At line (171): "Expected 0 Was 65535"
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  7
+PASSED:  6
+FAILED:  1
+IGNORED: 0
+
+---------------------
+BUILD FAILURE SUMMARY
+---------------------
+Unit test failures.
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Compiling leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  7
+PASSED:  7
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Generating runner for test_leds.c...
+Compiling test_leds_runner.c...
+Compiling test_leds.c...
+Linking test_leds.out...
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  7
+PASSED:  7
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$ ceedling
+
+
+Test 'test_leds.c'
+------------------
+Running test_leds.out...
+
+--------------------
+OVERALL TEST SUMMARY
+--------------------
+TESTED:  7
+PASSED:  7
+FAILED:  0
+IGNORED: 0
+
+(base) lgomez@meteo:~/Documentos/MAGISTER_UBA/Bimestre04/Testing/TP/TP2/leds$

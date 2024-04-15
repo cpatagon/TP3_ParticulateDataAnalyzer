@@ -2,21 +2,22 @@
  * Nombre del archivo: ParticulateDataAnalyzer.c
  * Versión: 0.1
  * Descripción:
- *  API para el análisis de datos de material particulado (MP) recogidos por sensores de calidad del aire.
- *  Este módulo calcula estadísticas clave como promedio, valor máximo, valor mínimo y desviación estándar,
- *  proporcionando herramientas esenciales para la evaluación de la calidad del aire en entornos internos y externos.
+ *  API para el análisis de datos de material particulado (MP) recogidos por sensores de calidad del
+ * aire. Este módulo calcula estadísticas clave como promedio, valor máximo, valor mínimo y
+ * desviación estándar, proporcionando herramientas esenciales para la evaluación de la calidad del
+ * aire en entornos internos y externos.
  *
  * Autor: Luis Gómez P.
  * Derechos de Autor: (C) 2023 CESE
  * Licencia: GNU General Public License v3.0
  *
- * Este programa es software libre: puedes redistribuirlo y/o modificarlo bajo los términos de la Licencia
- * Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la Licencia, o
- * (a tu elección) cualquier versión posterior.
+ * Este programa es software libre: puedes redistribuirlo y/o modificarlo bajo los términos de la
+ * Licencia Pública General GNU publicada por la Free Software Foundation, ya sea la versión 3 de la
+ * Licencia, o (a tu elección) cualquier versión posterior.
  *
- * Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; sin siquiera la
- * garantía implícita de COMERCIABILIDAD o APTITUD PARA UN PROPÓSITO PARTICULAR. Ver la Licencia Pública General
- * GNU para más detalles.
+ * Este programa se distribuye con la esperanza de que sea útil, pero SIN NINGUNA GARANTÍA; sin
+ * siquiera la garantía implícita de COMERCIABILIDAD o APTITUD PARA UN PROPÓSITO PARTICULAR. Ver la
+ * Licencia Pública General GNU para más detalles.
  *
  * Deberías haber recibido una copia de la Licencia Pública General GNU junto con este programa.
  * Si no es así, visita <http://www.gnu.org/licenses/>.
@@ -24,13 +25,12 @@
  * SPDX-License-Identifier: GPL-3.0-only
  */
 
-
 /**
  * @file ParticulateDataAnalyzer.c
  * @brief API para análisis estadístico de datos de material particulado (MP).
  *
  * Este archivo implementa una API que calcula parámetros estadísticos a
- * partir de datos recogidos por sensores de calidad del aire. 
+ * partir de datos recogidos por sensores de calidad del aire.
  * Los parámetros incluyen promedio, máximo, mínimo y desviación estándar,
  * necesarios para analizar la concentración de partículas en el aire.
  *
@@ -44,8 +44,6 @@
  * en entornos interiores y exteriores.
  */
 
-
-
 /* === Headers files inclusions =============================================================== */
 
 #include "ParticulateDataAnalyzer.h"
@@ -55,27 +53,13 @@
 /* === Macros definitions ====================================================================== */
 
 /**
- * @brief Máximo valor de concentración de Material Particulado (MP) considerado en los análisis.
- */
-#define MP_MAX_VALUE 500
-
-/**
- * @brief Mínimo valor de concentración de Material Particulado (MP) considerado en los análisis.
- */
-#define MP_MIN_VALUE 0.1
-
-/**
- * @brief Valor retornado cuando un conjunto de datos está vacío o no contiene datos válidos.
- */
-#define MSN_VOID_ARRAY_VALUE -999
-
-/**
  * @brief Tolerancia usada en el cálculo de la raíz cuadrada mediante el método de búsqueda binaria.
  */
 #define TOLERANCE_SQRT_MET 1e-7
 
 /**
- * @brief Indicador de que no hay datos en el conjunto, utilizado en comprobaciones de tamaño de array.
+ * @brief Indicador de que no hay datos en el conjunto, utilizado en comprobaciones de tamaño de
+ * array.
  */
 #define CERODATA 0
 
@@ -85,20 +69,49 @@
 #define START_LOCATION 0
 
 /**
- * @brief valor mínimo de datos para considerar valido el divisor 
+ * @brief valor mínimo de datos para considerar valido el divisor
  */
 #define MIN_VALID_COUNT 1
 
 /**
- * @brief valor inicial de contador de datos 
+ * @brief valor inicial de contador de datos
  */
 #define INI_VALID_COUNT 0
 
 /**
- * @brief valor inicial para la suma de cuadrados 
+ * @brief valor inicial para la suma de cuadrados
  */
 #define INI_SUM_OF_SQUARE 0.0
 
+/**
+ * @brief valor divisor por 2
+ */
+#define DIV2 2
+
+/**
+ * @brief valor minimo de tolerancia para el cálculo de raiz
+ */
+#define MIN_VALUE_SQRT_TOLERANCE 0
+
+/**
+ * @brief valor inicial suma
+ */
+#define INI_SUM 0.0
+
+/**
+ * @brief valor inicial de resto
+ */
+#define INI_REST 0
+
+/**
+ * @brief La desviación estándar no está definida para n <= 1
+ */
+#define DS_NOTDEFINI 1
+
+/**
+ * @brief La división no esta definida para 0
+ */
+#define NOT_DIV_NUM 0
 
 /* === Private data type declarations ========================================================== */
 
@@ -121,10 +134,9 @@
  * @param data Valor de MP a verificar.
  * @return Verdadero si el valor está dentro del rango; falso en caso contrario.
  */
-bool maskIsDataTrue(float data){
+bool maskIsDataTrue(float data) {
     return (data > MP_MIN_VALUE && data < MP_MAX_VALUE);
 }
-
 
 /**
  * @brief Comprueba si un array de datos está vacío o no inicializado.
@@ -136,7 +148,7 @@ bool maskIsDataTrue(float data){
  * @param n_data Número de elementos en el array.
  * @return Verdadero si el array está vacío o no inicializado; falso si contiene elementos.
  */
-bool isArrayEmpty(float data[], int n_data){
+bool isArrayEmpty(float data[], int n_data) {
     return (n_data == CERODATA || data == NULL);
 }
 
@@ -148,16 +160,18 @@ bool isArrayEmpty(float data[], int n_data){
  * para números positivos y retorna cero para números no positivos.
  *
  * @param x Número del cual calcular la raíz cuadrada.
- * @return La raíz cuadrada de x, calculada dentro de una tolerancia definida por TOLERANCE_SQRT_MET.
+ * @return La raíz cuadrada de x, calculada dentro de una tolerancia definida por
+ * TOLERANCE_SQRT_MET.
  */
 double sqrt_binary_search(double x) {
-    if (x <= 0) return 0;
+    if (x <= 0)
+        return 0;
 
-    double low = 0, high = x, mid, guess;
+    double low = MIN_VALUE_SQRT_TOLERANCE, high = x, mid, guess;
     double tolerance = TOLERANCE_SQRT_MET;
 
     while (high - low > tolerance) {
-        mid = (low + high) / 2;
+        mid = (low + high) / DIV2;
         guess = mid * mid;
 
         if (guess > x)
@@ -166,14 +180,10 @@ double sqrt_binary_search(double x) {
             low = mid;
     }
 
-    return (low + high) / 2;
+    return (low + high) / DIV2;
 }
 
-
-
-
 /* === Public function implementation ========================================================== */
-
 
 /**
  * @brief Calcula el promedio de un conjunto de datos, excluyendo valores fuera de rango.
@@ -191,19 +201,19 @@ double sqrt_binary_search(double x) {
 float calculateAverage(float data[], int n_data) {
     if (isArrayEmpty(data, n_data))
         return MSN_VOID_ARRAY_VALUE; // Manejo de array vacío
-    float sum = 0.0;
-    int rest = 0; // numero de valor descontado del n total cuando
-    for (int i = 0; i < n_data; i++) { 
+    float sum = INI_SUM;
+    int rest = INI_REST; // numero de valor descontado del n total cuando
+    for (int i = 0; i < n_data; i++) {
         if (maskIsDataTrue(data[i])) { // salta valores negativos o iguales a 0
             sum += data[i];
         } else {
-	  rest++; // valores no validados
+            rest++; // valores no validados
         }
     }
     n_data = n_data - rest; // recalcula el valor de n en función de valores no validados
 
-    if (n_data > 0) {          // verifica no estar dividiendo por un número negativo o 0
-        return sum / (n_data); // retorna promedio
+    if (n_data > NOT_DIV_NUM) { // verifica no estar dividiendo por un número negativo o 0
+        return sum / (n_data);  // retorna promedio
     } else {
         return MSN_VOID_ARRAY_VALUE; // retorna un mensaje de error por array nulo
     }
@@ -221,20 +231,20 @@ float calculateAverage(float data[], int n_data) {
  *         los elementos son inválidos.
  */
 
-float  findMaxValue(float data[], int n_data){
-  if (isArrayEmpty(data, n_data))
+float findMaxValue(float data[], int n_data) {
+    if (isArrayEmpty(data, n_data))
         return MSN_VOID_ARRAY_VALUE; // Manejo de array vacío
-  float value = data[START_LOCATION];
-  int location = START_LOCATION; 
-  for (int i = 1; i < n_data;i++){
-     if (maskIsDataTrue(data[i])) { // salta valores negativos o iguales a 0
-      if (value < data[i]){
-      value = data[i];
-      location = i;
-      }
+    float value = data[START_LOCATION];
+    int location = START_LOCATION;
+    for (int i = 1; i < n_data; i++) {
+        if (maskIsDataTrue(data[i])) { // salta valores negativos o iguales a 0
+            if (value < data[i]) {
+                value = data[i];
+                location = i;
+            }
+        }
     }
-  }
-  return value;
+    return value;
 };
 
 /**
@@ -249,20 +259,20 @@ float  findMaxValue(float data[], int n_data){
  *         los elementos son inválidos.
  */
 
-float  findMinValue(float data[], int n_data){
-   if (isArrayEmpty(data, n_data))
+float findMinValue(float data[], int n_data) {
+    if (isArrayEmpty(data, n_data))
         return MSN_VOID_ARRAY_VALUE; // Manejo de array vacío
-  float value = data[START_LOCATION];
-  int location = 0; 
-  for (int i = 1; i < n_data;i++){
-     if (maskIsDataTrue(data[i])) { // salta valores negativos o iguales a 0
-      if (value > data[i]){
-      value = data[i];
-      location = i;
-      }
+    float value = data[START_LOCATION];
+    int location = START_LOCATION;
+    for (int i = 1; i < n_data; i++) {
+        if (maskIsDataTrue(data[i])) { // salta valores negativos o iguales a 0
+            if (value > data[i]) {
+                value = data[i];
+                location = i;
+            }
+        }
     }
-  }
-  return value;
+    return value;
 };
 
 /**
@@ -280,18 +290,19 @@ float  findMinValue(float data[], int n_data){
 
 float calculateStandardDeviation(float data[], int n) {
     if (isArrayEmpty(data, n))
-        return MSN_VOID_ARRAY_VALUE;  // Manejo de array vacío
+        return MSN_VOID_ARRAY_VALUE; // Manejo de array vacío
 
-    if (n <= 1) return 0;  // La desviación estándar no está definida para n <= 1
+    if (n <= DS_NOTDEFINI)
+        return MSN_DS_NOTDEFINI; // La desviación estándar no está definida para n <= 1
 
-    int validCount = INI_VALID_COUNT;  // Contador para el número de valores validados
+    int validCount = INI_VALID_COUNT; // Contador para el número de valores validados
     float mean = calculateAverage(data, n);
-    float sumOfSquares =  INI_SUM_OF_SQUARE;
+    float sumOfSquares = INI_SUM_OF_SQUARE;
 
     for (int i = 0; i < n; i++) {
         if (maskIsDataTrue(data[i])) {
             sumOfSquares += (data[i] - mean) * (data[i] - mean);
-            validCount++;  // Incrementa solo para datos validados
+            validCount++; // Incrementa solo para datos validados
         }
     }
 
@@ -299,10 +310,9 @@ float calculateStandardDeviation(float data[], int n) {
     if (validCount > MIN_VALID_COUNT) {
         return sqrt_binary_search(sumOfSquares / (validCount - 1));
     } else {
-        return 0;  // Retorna 0 si no hay suficientes datos para calcular la desviación estándar
+        return MSN_NOT_DATA; // Retorna -777 si no hay suficientes datos para calcular la desviación
+                             // estándar
     }
 }
-
-
 
 /* === End of documentation ==================================================================== */

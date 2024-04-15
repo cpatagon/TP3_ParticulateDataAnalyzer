@@ -5,7 +5,7 @@
  * Pruebas (TDD, por sus siglas en inglés). El objetivo es implementar un conjunto de pruebas
  * unitarias que guíen el desarrollo del software de manera iterativa.
  * Autor: Luis Gómez P.
- * Derechos de Autor: (C) 2023 [Tu nombre o el de tu organización]
+ * Derechos de Autor: (C) 2023 CESE FIUBA
  * Licencia: GNU General Public License v3.0
  *
  * Este programa es software libre: puedes redistribuirlo y/o modificarlo
@@ -34,14 +34,13 @@
 ///////////////////////////////////////////////
 */
 
-
 /**
  * @file  test_ParticulateDataAnalyzer.c
- * @brief Este archivo contiene pruebas unitarias para el módulo ParticulateDataAnalyzer, el cual 
- *        analiza conjuntos de datos de Material Particulado (MP) recopilados por sensores. 
- *        Las pruebas están diseñadas siguiendo la metodología de Desarrollo Guiado por Pruebas 
- *        (Test-Driven Development - TDD). Este enfoque asegura que el desarrollo del software 
- *        sea iterativo y guiado por las necesidades específicas de validación de los datos de MP, 
+ * @brief Este archivo contiene pruebas unitarias para el módulo ParticulateDataAnalyzer, el cual
+ *        analiza conjuntos de datos de Material Particulado (MP) recopilados por sensores.
+ *        Las pruebas están diseñadas siguiendo la metodología de Desarrollo Guiado por Pruebas
+ *        (Test-Driven Development - TDD). Este enfoque asegura que el desarrollo del software
+ *        sea iterativo y guiado por las necesidades específicas de validación de los datos de MP,
  *        lo que ayuda a garantizar la precisión y fiabilidad del módulo bajo prueba.
  *
  *
@@ -53,16 +52,14 @@
  *       1.5 calcula el promedio de un arreglo excluyendo valores extremos superiores.
  *       2.1 encuentra el valor máximo en un arreglo de datos estándar
  *       2.2 identifica el valor máximo en un conjunto de datos que incluye un valor fuera de rango
- *       2.3 identifica el valor máximo en un conjunto de datos que incluye menor al valor mínimo detectable.
- *       2.4 Prueba la función findMaxValue con un conjunto de datos vacíos.
- *       3.1 Prueba la función findMinValue con un conjunto estándar de datos.
- *       3.2 Prueba la función findMinValue con valores sobre el limite máximo de detección.
- *       3.3 Prueba la función findMinValue con un conjunto vacío de datos.
- *       4.1 Prueba la función calculateStandardDeviation con un conjunto estándar de datos.
- *       4.2 Prueba calculateStandardDeviation con un conjunto vacío de datos.
- *       4.3 Prueba calculateStandardDeviation con datos que incluyen valores fuera de rango.
+ *       2.3 identifica el valor máximo en un conjunto de datos que incluye menor al valor mínimo
+ * detectable. 2.4 Prueba la función findMaxValue con un conjunto de datos vacíos. 3.1 Prueba la
+ * función findMinValue con un conjunto estándar de datos. 3.2 Prueba la función findMinValue con
+ * valores sobre el limite máximo de detección. 3.3 Prueba la función findMinValue con un conjunto
+ * vacío de datos. 4.1 Prueba la función calculateStandardDeviation con un conjunto estándar de
+ * datos. 4.2 Prueba calculateStandardDeviation con un conjunto vacío de datos. 4.3 Prueba
+ * calculateStandardDeviation con datos que incluyen valores fuera de rango.
  */
-
 
 /* === Headers files inclusions =============================================================== */
 
@@ -96,7 +93,8 @@
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]))
 
 /// @brief Define un conjunto estándar de datos de Material Particulado (MP) para pruebas.
-#define SET_STANDAR_DATA_MP  {2.0, 4.0, 6.0, 8.0, 10.0}
+#define SET_STANDAR_DATA_MP                                                                        \
+    { 2.0, 4.0, 6.0, 8.0, 10.0 }
 /// @brief Promedio esperado para el conjunto estándar de datos de MP.
 #define EXPECTED_MEAN_STANDAR_DATA_MP 6.0
 /// @brief Valor máximo esperado en el conjunto estándar de datos de MP.
@@ -105,17 +103,22 @@
 #define EXPECTED_MIN_STANDAR_DATA_MP 2.0
 
 /// @brief Define otro conjunto estándar de datos de MP con variaciones para pruebas extendidas.
-#define SET_STANDAR_DATA_2_MP  {20.0, 30.0, 60, 8.0, 10.0}
-/// @brief Especifica la desviación estándar esperada para el segundo conjunto estándar de datos de MP.
+#define SET_STANDAR_DATA_2_MP                                                                      \
+    { 20.0, 30.0, 60, 8.0, 10.0 }
+/// @brief Especifica la desviación estándar esperada para el segundo conjunto estándar de datos de
+/// MP.
 #define EXPECTED_STD_STANDAR_DATA_2_MP 21.13764
 
 /// @brief Define un conjunto vacío de datos de MP para pruebas de manejo de datos vacíos.
-#define SET_EMPTY_DATA_MP  {}
-/// @brief Valor de advertencia utilizado para indicar datos vacíos o no disponibles en los resultados de las pruebas.
-#define EXPECTED_WARNING_EMPTY_DATA_MP  -999
+#define SET_EMPTY_DATA_MP                                                                          \
+    {}
+/// @brief Valor de advertencia utilizado para indicar datos vacíos o no disponibles en los
+/// resultados de las pruebas.
+#define EXPECTED_WARNING_EMPTY_DATA_MP -999
 
 /// @brief Define un conjunto de datos de MP que incluye valores atípicos extremos para pruebas.
-#define SET_OUTLIER_DATA_MP {2.0, 1000.0, 600.0, 6.0, 8.0, 10.0}
+#define SET_OUTLIER_DATA_MP                                                                        \
+    { 2.0, 1000.0, 600.0, 6.0, 8.0, 10.0 }
 /// @brief Promedio esperado para el conjunto de datos de MP que incluye valores atípicos.
 #define EXPECTED_MEAN_OUTLIER_DATA_MP 6.5
 /// @brief Desviación estándar esperada para el conjunto de datos de MP con valores atípicos.
@@ -126,18 +129,18 @@
 #define EXPECTED_MAX_OUTLIER_DATA_MP 10.0
 
 /// @brief Define un conjunto de datos de MP con valores negativos para pruebas.
-#define SET_NEGATIVE_DATA_MP {2.0, -4.0, -600.0, 6.0, 8.0, 10.0}
+#define SET_NEGATIVE_DATA_MP                                                                       \
+    { 2.0, -4.0, -600.0, 6.0, 8.0, 10.0 }
 /// @brief Promedio esperado para el conjunto de datos de MP que incluye valores negativos.
 #define EXPECTED_MEAN_NEGATIVE_DATA_MP 6.5
 
 /// @brief Define un conjunto de datos de MP que incluye múltiples ceros para pruebas.
-#define SET_CERO_DATA_MP {2.0, 0.0, 6.0, 8.0, 0.0, 0.0, 10.0}
+#define SET_CERO_DATA_MP                                                                           \
+    { 2.0, 0.0, 6.0, 8.0, 0.0, 0.0, 10.0 }
 /// @brief Promedio esperado para el conjunto de datos de MP que incluye ceros.
 #define EXPECTED_MEAN_CERO_DATA_MP 6.5
 /// @brief Máximo esperado para el conjunto de datos de MP que incluye ceros.
 #define EXPECTED_MAX_CERO_DATA_MP 10
-
-
 
 /* === Private data type declarations ========================================================== */
 
@@ -150,8 +153,6 @@
 /* === Private variable definitions ============================================================ */
 
 /* === Private function implementation ========================================================= */
-
-
 
 /* === Public function implementation ========================================================== */
 /*
@@ -180,10 +181,11 @@ LISTA DE PRUEBAS
  * indicando que la función maneja correctamente el conjunto de datos de prueba.
  */
 void test_calculateAverage_StandardSet(void) {
-    float data[] = SET_STANDAR_DATA_MP;  // Datos de prueba para el promedio con valores estándar 
-    float result = calculateAverage(data, ARRAY_SIZE(data));  // Llamada a la función para calcular el promedio
-    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MEAN_STANDAR_DATA_MP, result);  // Verifica que el resultado
-                                                                     // sea como el esperado
+    float data[] = SET_STANDAR_DATA_MP; // Datos de prueba para el promedio con valores estándar
+    float result =
+        calculateAverage(data, ARRAY_SIZE(data)); // Llamada a la función para calcular el promedio
+    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MEAN_STANDAR_DATA_MP, result); // Verifica que el resultado
+                                                                    // sea como el esperado
 }
 
 /** 1.2
@@ -197,10 +199,10 @@ void test_calculateAverage_StandardSet(void) {
  * - Verifica que el resultado de calculateAverage sea el valor de error esperado.
  */
 void test_calculateAverage_EmptySet(void) {
-    float data[] = SET_EMPTY_DATA_MP;  // Inicialización de un array vacío
-    float result = calculateAverage(data, ARRAY_SIZE(data));  // Cálculo del promedio
-    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_WARNING_EMPTY_DATA_MP, result);  // Comprobación de que el
-                                                                      // resultado es correcto
+    float data[] = SET_EMPTY_DATA_MP;                        // Inicialización de un array vacío
+    float result = calculateAverage(data, ARRAY_SIZE(data)); // Cálculo del promedio
+    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_WARNING_EMPTY_DATA_MP, result); // Comprobación de que el
+                                                                     // resultado es correcto
 }
 
 /** 1.3
@@ -215,12 +217,11 @@ void test_calculateAverage_EmptySet(void) {
  * - Comprueba que el promedio calculado coincida con el valor esperado.
  */
 void test_calculate_average_and_remove_negative_value(void) {
-    float data[] = SET_NEGATIVE_DATA_MP;  // Inicializa arreglo con valores atípicos
-    float result = calculateAverage(data, ARRAY_SIZE(data)); // función a probar
-    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MEAN_NEGATIVE_DATA_MP, result);  // Verifica que el
-                                                                      // resultado sea el esperado
+    float data[] = SET_NEGATIVE_DATA_MP; // Inicializa arreglo con valores atípicos
+    float result = calculateAverage(data, ARRAY_SIZE(data));         // función a probar
+    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MEAN_NEGATIVE_DATA_MP, result); // Verifica que el
+                                                                     // resultado sea el esperado
 }
-
 
 /** 1.4
  * @brief Prueba que calcula el promedio de un arreglo omitiendo valores cero.
@@ -234,11 +235,11 @@ void test_calculate_average_and_remove_negative_value(void) {
  * - Verifica que el promedio calculado excluya los valores cero y coincida con el valor esperado.
  */
 void test_calculate_average_and_remove_cero_value(void) {
-    float data[] = SET_CERO_DATA_MP; // datos de prueba 
+    float data[] = SET_CERO_DATA_MP;                         // datos de prueba
     float result = calculateAverage(data, ARRAY_SIZE(data)); // función a probar
-    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MEAN_CERO_DATA_MP, result); // verificación de la función probada
+    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MEAN_CERO_DATA_MP,
+                            result); // verificación de la función probada
 }
-
 
 /** 1.5
  * @brief Prueba que calcula el promedio de un arreglo excluyendo valores extremos superiores.
@@ -252,9 +253,10 @@ void test_calculate_average_and_remove_cero_value(void) {
  * - Verifica que el promedio calculado no incluya dicho valor y sea igual al valor esperado.
  */
 void test_calculate_average_and_remove_over_max_value(void) {
-    float data[] =  SET_OUTLIER_DATA_MP;  // datos de prueba
-    float result = calculateAverage(data,  ARRAY_SIZE(data)); // función a probar
-    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MEAN_OUTLIER_DATA_MP, result);  // verificación de la función probada
+    float data[] = SET_OUTLIER_DATA_MP;                      // datos de prueba
+    float result = calculateAverage(data, ARRAY_SIZE(data)); // función a probar
+    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MEAN_OUTLIER_DATA_MP,
+                            result); // verificación de la función probada
 }
 
 // Encuentra Valor Máximo de un arreglo de concentraciones de MP
@@ -273,13 +275,15 @@ void test_calculate_average_and_remove_over_max_value(void) {
  * - Verifica que el valor máximo calculado sea igual al valor máximo esperado.
  */
 void test_findMaxValue(void) {
-    float data[] = SET_STANDAR_DATA_MP;  // Incluye valores sobre el rango de detección de sensor
+    float data[] = SET_STANDAR_DATA_MP; // Incluye valores sobre el rango de detección de sensor
     float result = findMaxValue(data, ARRAY_SIZE(data)); // función a probar
-    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MAX_STANDAR_DATA_MP, result); // verificación de la función probada
+    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MAX_STANDAR_DATA_MP,
+                            result); // verificación de la función probada
 }
 
 /** 2.2
- * @brief Prueba que identifica el valor máximo en un conjunto de datos que incluye un valor extremadamente alto.
+ * @brief Prueba que identifica el valor máximo en un conjunto de datos que incluye un valor
+ * extremadamente alto.
  *
  * Esta prueba verifica que la función findMaxValue pueda identificar correctamente el valor máximo
  * en un conjunto de datos que incluye valores atípicos extremos, asegurándose de que dichos valores
@@ -287,29 +291,33 @@ void test_findMaxValue(void) {
  *
  * @test
  * - Configura un arreglo con un valor extremadamente alto.
- * - Verifica que el valor máximo identificado excluya el valor extremo y coincida con el máximo esperado.
+ * - Verifica que el valor máximo identificado excluya el valor extremo y coincida con el máximo
+ * esperado.
  */
 void test_findMaxValue_withOutlierValues(void) {
-    float data[] = SET_OUTLIER_DATA_MP;  // Incluye valores sobre el rango de detección de sensor
+    float data[] = SET_OUTLIER_DATA_MP; // Incluye valores sobre el rango de detección de sensor
     float result = findMaxValue(data, ARRAY_SIZE(data)); // función a probar
-    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MAX_OUTLIER_DATA_MP, result); // verificación de la función probada
+    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MAX_OUTLIER_DATA_MP,
+                            result); // verificación de la función probada
 }
 
 /** 2.3
  * @brief Prueba que identifica el valor máximo en un conjunto de datos que incluye valor 0.
  *
  * Esta prueba verifica que la función findMaxValue pueda identificar correctamente el valor máximo
- * en un conjunto de datos que incluye valores atípicos como cero, asegurándose de que dichos valores
- * no sean considerados en el cálculo.
+ * en un conjunto de datos que incluye valores atípicos como cero, asegurándose de que dichos
+ * valores no sean considerados en el cálculo.
  *
  * @test
  * - Configura un arreglo con un valor cero.
- * - Verifica que el valor máximo identificado excluya el valor cero  y coincida con el máximo esperado.
+ * - Verifica que el valor máximo identificado excluya el valor cero  y coincida con el máximo
+ * esperado.
  */
 void test_findMaxValue_withCeroValues(void) {
-    float data[] = SET_CERO_DATA_MP;  // Incluye valores sobre el rango de detección de sensor
+    float data[] = SET_CERO_DATA_MP; // Incluye valores sobre el rango de detección de sensor
     float result = findMaxValue(data, ARRAY_SIZE(data)); // función a probar
-    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MAX_CERO_DATA_MP, result); // verificación de la función probada
+    TEST_ASSERT_EQUAL_FLOAT(EXPECTED_MAX_CERO_DATA_MP,
+                            result); // verificación de la función probada
 }
 
 /** 2.4
@@ -328,7 +336,6 @@ void test_findMaxValue_in_EmptySet(void) {
     float result = findMaxValue(data, ARRAY_SIZE(data));
     TEST_ASSERT_EQUAL_FLOAT(EXPECTED_WARNING_EMPTY_DATA_MP, result);
 }
-
 
 // Encuentra Valores mínimos de un set de datos de MP
 
@@ -383,7 +390,6 @@ void test_findMinValue_inEmptySet(void) {
     TEST_ASSERT_EQUAL_FLOAT(EXPECTED_WARNING_EMPTY_DATA_MP, result);
 }
 
-
 // calcula de desviación estadar de un set de datos de mp
 
 /** 4.1
@@ -419,7 +425,6 @@ void test_calculateStandardDeviation_inEmptySet(void) {
     TEST_ASSERT_EQUAL_FLOAT(EXPECTED_WARNING_EMPTY_DATA_MP, result);
 }
 
-
 /** 4.3
  * @brief Prueba calculateStandardDeviation con datos que incluyen valores fuera de rango.
  *
@@ -438,7 +443,5 @@ void test_calculateStandardDeviation_withOutlierValues(void) {
     float result = calculateStandardDeviation(data, ARRAY_SIZE(data));
     TEST_ASSERT_EQUAL_FLOAT(EXPECTED_STD_OUTLIER_DATA_MP, result);
 }
-
-
 
 /* === End of documentation ==================================================================== */

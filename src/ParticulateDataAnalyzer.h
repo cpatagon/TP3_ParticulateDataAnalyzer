@@ -36,7 +36,8 @@
  * @file ParticulateDataAnalyzer.h
  * @brief Declaraciones de la API para análisis de datos de material particulado.
  *
- * Contiene funciones para calcular estadísticas de datos obtenidos por sensores de calidad del aire:
+ * Contiene funciones para calcular estadísticas de datos obtenidos por sensores de calidad del
+ * aire:
  * - calculateAverage: Calcula el promedio de datos validados.
  * - findMaxValue: Identifica el valor máximo en los datos.
  * - findMinValue: Identifica el valor mínimo en los datos.
@@ -45,9 +46,31 @@
  * Adecuado para sistemas de monitoreo de calidad del aire.
  */
 
-
-
 /* === Headers files inclusions ================================================================ */
+/**
+ * @brief Máximo valor de concentración de Material Particulado (MP) considerado en los análisis.
+ */
+#define MP_MAX_VALUE 500
+
+/**
+ * @brief Mínimo valor de concentración de Material Particulado (MP) considerado en los análisis.
+ */
+#define MP_MIN_VALUE 0.1
+
+/**
+ * @brief Valor retornado cuando un conjunto de datos está vacío o no contiene datos válidos.
+ */
+#define MSN_VOID_ARRAY_VALUE -999
+
+/**
+ * @brief La desviación estándar no está definida para n <= 1
+ */
+#define MSN_DS_NOTDEFINI -666
+
+/**
+ * @brief Numero insuficiente de datos
+ */
+#define MSN_NOT_DATA -777
 
 /* === Cabecera C++ ============================================================================ */
 
@@ -57,14 +80,11 @@ extern "C" {
 
 /* === Public macros definitions =============================================================== */
 
-#define  EMPTIE_DATA {};
-  
 /* === Public data type declarations =========================================================== */
 
 /* === Public variable declarations ============================================================ */
 
 /* === Public function declarations ============================================================ */
-
 
 /**
  * @brief Calcula el promedio de un conjunto de datos.
@@ -78,7 +98,6 @@ extern "C" {
  *         array está vacío o todos los datos son inválidos.
  */
 float calculateAverage(float data[], int n_data);
-
 
 /**
  * @brief Encuentra el valor máximo en un conjunto de datos.
@@ -94,7 +113,6 @@ float calculateAverage(float data[], int n_data);
  */
 float findMaxValue(float data[], int n_data);
 
-
 /**
  * @brief Encuentra el valor mínimo en un conjunto de datos.
  *
@@ -108,7 +126,6 @@ float findMaxValue(float data[], int n_data);
  *         el array está vacío o todos los datos son inválidos.
  */
 float findMinValue(float data[], int n_data);
-
 
 /**
  * @brief Calcula la desviación estándar de un conjunto de datos.
@@ -124,9 +141,6 @@ float findMinValue(float data[], int n_data);
  *         elementos válidos es menor o igual a 1 o si el array está vacío.
  */
 float calculateStandardDeviation(float data[], int n);
-
-
-  
 
 /* === End of documentation ==================================================================== */
 
